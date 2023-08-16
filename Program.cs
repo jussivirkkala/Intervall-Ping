@@ -1,7 +1,8 @@
 ﻿/* Ping computers every minute 
  * @jussivirkkala
  * 2023-08-16 v1.0.0 First version. Using BesaEvt 1.0.3 as template. 
- * 
+ * 2023-08-16 v1.0.1 Press any key to close scan
+ 
  * dotnet publish -r win-x64 -c Release --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true
  */
 
@@ -21,14 +22,18 @@ Line("Ping computers every minute v" +
 if (args.Length < 1)
 {
     Line(@"Provide computer names separated with space as parameters e.g. ping www.google.com www.facebook.com");
+    Line("Press any key or close window...");
+    Console.ReadKey();
     return;
 }
 
 
 TimerCallback(init);
 Timer timer = new Timer(TimerCallback,null,0,60000);
-
+Line("Press any key to close scan...");
 Console.ReadKey();
+Line(DateTime.Now.ToString("o") + "\tAny key close");
+
 
 
 void TimerCallback(object state)
