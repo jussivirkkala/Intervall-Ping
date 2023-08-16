@@ -2,7 +2,7 @@
  * @jussivirkkala
  * 2023-08-16 v1.0.0 First version. Using BesaEvt 1.0.3 as template. 
  * 2023-08-16 v1.0.1 Press any key to close scan
- * 2023-08-16 v1.0.2 
+ * 2023-08-16 v1.0.2 Intervall as parameter. Corrected memory leak.
  * dotnet publish -r win-x64 -c Release --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true
  */
 
