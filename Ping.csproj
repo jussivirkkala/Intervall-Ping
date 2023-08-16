@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Authors>@jussivirkkala</Authors>
+		<FileVersion>1.0.3</FileVersion>
+		<Copyright>@jussivirkkala</Copyright>
+		<Version>1.0.3</Version>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+</Project>
