@@ -32,7 +32,7 @@ Line("refresh(s):\t"+args[0]);
 Int64 t=Convert.ToInt64(args[0]);
 if (t<(args.Length-1))
 {
-    Line("Minimum refresh is number of computer");
+    Line("Minimum refresh is number of computers");
     Line("Press any key or close window...");
     Console.ReadKey();
     return;
@@ -80,7 +80,6 @@ void TimerCallback(object state)
     init = false;
 }
 
-// 2023-08-16 Removed static
 static bool Ping(Ping pingSender, PingOptions options,string computer)
 {
     // ChatGPT  
