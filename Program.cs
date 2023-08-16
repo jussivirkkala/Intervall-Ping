@@ -88,7 +88,6 @@ static bool Ping(Ping pingSender, PingOptions options,string computer)
         {
             // From 1000->500
             PingReply reply = pingSender.Send(computer, 500, new byte[32], options);
-
             if (reply.Status == IPStatus.Success)
             {
                 return true; //  Console.WriteLine($"Ping to {hostNameOrAddress} succeeded. Roundtrip time: {reply.RoundtripTime} ms");
