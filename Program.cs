@@ -11,7 +11,9 @@ using System.Reflection; // Assembly.
 
 
 bool[] on;
+bool init=true;
 on = new bool[255];
+
 
 Line("Ping computers every minute v" +
     FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion +
@@ -22,13 +24,15 @@ if (args.Length < 1)
     return;
 }
 
+
+TimerCallback(init);
 Timer timer = new Timer(TimerCallback,null,0,60000);
+
 Console.ReadKey();
 
 
 void TimerCallback(object state)
 {
-
     for (int i = 0; i < args.Length; i++)
     {
         string s;
@@ -36,9 +40,10 @@ void TimerCallback(object state)
         string t = args[i];
         s += t + "\t";
         bool b = Ping(t);
+        if (init) on[i] = !b;
         if (b != on[i])
         {
-            if (Ping(t))
+            if (b)
                 s += "on";
             else
                 s += "off";
@@ -46,6 +51,7 @@ void TimerCallback(object state)
             Line(s);
         }
     }
+    init = false;
 }
 
 
