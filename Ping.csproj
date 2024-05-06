@@ -8,5 +8,6 @@
 		<Copyright>@jussivirkkala</Copyright>
 		<Version>1.0.2</Version>
 		<Nullable>enable</Nullable>
+<PublishTrimmed>true</PublishTrimmed>
 	</PropertyGroup>
 </Project>
