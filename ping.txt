@@ -1,7 +1,0 @@
-Ping computers every minute v1.0.1
-github.com/jussivirkkala/Ping
-2023-08-16T16:58:56.4971077+03:00	www.google.com	on
-Press any key to close scan...
-2023-08-16T16:59:56.6386384+03:00	www.google.com	off
-2023-08-16T17:00:57.2025122+03:00	www.google.com	on
-2023-08-16T17:01:20.4164195+03:00	Any key close

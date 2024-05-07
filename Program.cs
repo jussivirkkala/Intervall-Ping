@@ -18,10 +18,10 @@ Ping pingSender = new Ping();
 
 Line("Ping computers every x seconds v" +
     FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion +
-    "\ngithub.com/jussivirkkala/ping");
+    "\ngithub.com/jussivirkkala/pingr");
 if (args.Length < 2)
 {
-    Line(@"Provide refresh (s) and computer names separated with space as parameters e.g. ping 10 www.google.com www.facebook.com");
+    Line(@"Provide refresh (s) and computer names separated with space as parameters e.g. pingr 10 www.google.com www.facebook.com");
     Line("Press any key or close window...");
     Console.ReadKey();
     return;
