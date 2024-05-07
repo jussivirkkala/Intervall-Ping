@@ -1,5 +1,6 @@
 ﻿/* Ping computers every minute 
  * @jussivirkkala
+ * 2024-05-06 Periodic timer
  * 2023-08-16 v1.0.0 First version. Using BesaEvt 1.0.3 as template. 
  * 2023-08-16 v1.0.1 Press any key to close scan
  * 2023-08-16 v1.0.2 Intervall as parameter. Corrected memory leak.
@@ -30,6 +31,7 @@ if (args.Length < 2)
 
 Line("refresh(s):\t"+args[0]);
 Int64 t=Convert.ToInt64(args[0]);
+/*
 if (t<(args.Length-1))
 {
     Line("Minimum refresh is number of computers");
@@ -37,7 +39,7 @@ if (t<(args.Length-1))
     Console.ReadKey();
     return;
 }
-t = t * 1000;
+*/
 
 PingOptions options = new PingOptions
 {
@@ -48,16 +50,20 @@ PingOptions options = new PingOptions
 };
 
 
-TimerCallback(init);
-Timer timer = new Timer(TimerCallback,null,0,t);
+var timer = new PeriodicTimer (TimeSpan.FromSeconds (t));
+
+RepeatForEver();
+
 Line("Press any key to close scan...");
 Console.ReadKey();
 Line(DateTime.Now.ToString("o") + "\tAny key close");
+timer.Dispose();
 
-
-void TimerCallback(object state)
+async void RepeatForEver()
 {
-;
+   while (await timer.WaitForNextTickAsync())
+
+
     for (int i = 1; i < args.Length; i++)
     {
         string s;
@@ -78,6 +84,8 @@ void TimerCallback(object state)
         }
     }
     init = false;
+
+
 }
 
 static bool Ping(Ping pingSender, PingOptions options,string computer)
