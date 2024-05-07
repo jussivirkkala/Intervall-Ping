@@ -10,13 +10,11 @@
 using System.Net.NetworkInformation;
 using System.Diagnostics; // FileVersionInfo
 using System.Reflection; // Assembly.
-using System.Runtime.InteropServices;
 
 bool[] on;
 bool init=true;
 on = new bool[255];
 Ping pingSender = new Ping();
-
 
 Line("Ping computers every x seconds v" +
     FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion +
@@ -31,6 +29,7 @@ if (args.Length < 2)
 
 Line("refresh(s):\t"+args[0]);
 Int64 t=Convert.ToInt64(args[0]);
+
 /*
 if (t<(args.Length-1))
 {
@@ -51,7 +50,6 @@ PingOptions options = new PingOptions
 
 
 var timer = new PeriodicTimer (TimeSpan.FromSeconds (t));
-
 RepeatForEver();
 
 Line("Press any key to close scan...");
@@ -109,7 +107,6 @@ static bool Ping(Ping pingSender, PingOptions options,string computer)
             return false; // Console.WriteLine($"An error occurred: {ex.Message}");
         }
 }
-
 
 // Display line
 static string Line(string s)
