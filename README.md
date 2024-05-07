@@ -1,6 +1,6 @@
 # Ping
 Ping computers with defined interval. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND...
-![Ping console output](Ping1.png)
+![Ping console output](Ping.png)
 
 Build .NET8.0.4 SDK (www.dot.net) into single win-x64 exe with following command.
 ```
