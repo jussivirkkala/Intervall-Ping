@@ -15,7 +15,7 @@ Project file has
 <RuntimeIdentifier>win-x64</RuntimeIdentifier>		
 ``` 
 You can also download x64 Windows binary [Ping.exe](Ping.exe)
- with SHA256: 
+ with SHA256: 9EAD01AD134C585F1F6285C63EF8FB122320DD64D1DD68B8F0FD2FBDA31B95FC
 
 
 
