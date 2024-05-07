@@ -4,10 +4,13 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Authors>@jussivirkkala</Authors>
-		<FileVersion>2024.05.06</FileVersion>
+		<FileVersion>2024.05.07</FileVersion>
 		<Copyright>@jussivirkkala</Copyright>
-		<Version>1.0.2</Version>
+		<Version>2024.05.07</Version>
 		<Nullable>enable</Nullable>
-<PublishTrimmed>true</PublishTrimmed>
+		<PublishTrimmed>true</PublishTrimmed>
+	    <PublishSingleFile>true</PublishSingleFile>
+    	<SelfContained>true</SelfContained>
+	    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
 	</PropertyGroup>
 </Project>
