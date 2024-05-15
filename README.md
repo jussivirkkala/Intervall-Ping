@@ -14,5 +14,5 @@ Project file has
 <SelfContained>true</SelfContained>
 <RuntimeIdentifier>win-x64</RuntimeIdentifier>		
 ``` 
-You can also download x64 Windows binary [Intervall-Ping.exe](Intervall-Ping.exe)
- with SHA256: CA6A647C2BD12A687F6F272D0EACAE6ECD9E1BFAB090DC22ACBAAD8308F33F43
+You can also download x64 Windows binary [Intervall-Ping2](Intervall-Ping.exe)
+ with SHA256: CA6A647C2BD12A687F6F272D0EACAE6ECD9E1BFAB090DC22ACBAAD8308F33F
