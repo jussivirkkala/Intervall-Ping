@@ -93,23 +93,17 @@ static bool Ping(Ping pingSender, PingOptions options,string computer)
 {
     // ChatGPT  
     try
-        {
-            // From 1000->500
-            PingReply reply = pingSender.Send(computer, 500, new byte[32], options);
-            if (reply.Status == IPStatus.Success)
-            {
-            
-                return true; 
-            }
-            else
-            {
-                return false; 
-            }
-        }
-        catch (PingException ex)
-        {
+    {
+        PingReply reply = pingSender.Send(computer, 500, new byte[32], options);
+        if (reply.Status == IPStatus.Success)            
+            return true; 
+        else
             return false; 
-        }
+    }
+    catch (PingException ex)
+    {
+        return false; 
+    }
 }
 
 // Display line
