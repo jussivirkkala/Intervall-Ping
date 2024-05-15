@@ -22,7 +22,7 @@ Line("Ping computers every x second intervall. Report only change. v" +
     "\ngithub.com/jussivirkkala/Intervall-Ping");
 if (args.Length < 2)
 {
-    Line(@"Provide refresh (s) and computer names separated with space as parameters e.g. Intervall-Ping 10 www.google.com www.facebook.com");
+    Line(@"Provide refresh (s) and computer names separated with space as parameters e.g. Intervall-Ping 1 www.google.com www.facebook.com#TEXT_TO_DISPLAY");
     Line("Press any key or close window...");
     Console.ReadKey();
     return;
@@ -71,7 +71,14 @@ async void RepeatForEver()
             string s;
             s = DateTime.Now.ToString("O")+"\t";
             string t = args[i];
-            s += t + "\t";       
+            string[] subs = t.Split('#');
+            if (subs.Count()>1)
+            {
+                s += subs[1] + "\t";       
+                t=subs[0];
+            }
+            else
+                s += t + "\t";       
 
             bool b = Ping(pingSender,options,t);
             if (init) on[i] = !b;
@@ -91,25 +98,18 @@ async void RepeatForEver()
 
 static bool Ping(Ping pingSender, PingOptions options,string computer)
 {
-    // ChatGPT  
     try
-        {
-            // From 1000->500
-            PingReply reply = pingSender.Send(computer, 500, new byte[32], options);
-            if (reply.Status == IPStatus.Success)
-            {
-            
-                return true; 
-            }
-            else
-            {
-                return false; 
-            }
-        }
-        catch (PingException ex)
-        {
+    {
+        PingReply reply = pingSender.Send(computer, 500, new byte[32], options);
+        if (reply.Status == IPStatus.Success)            
+            return true; 
+        else
             return false; 
-        }
+    }
+    catch (PingException ex)
+    {
+        return false; 
+    }
 }
 
 // Display line
