@@ -17,12 +17,12 @@ using System.Reflection; // Assembly.
 
 Ping pingSender = new Ping();
 
-Line("Ping computers every x seconds. Report change v" +
+Line("Ping computers every x second intervall. Report only change. v" +
     FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion +
-    "\ngithub.com/jussivirkkala/pingr");
+    "\ngithub.com/jussivirkkala/Intervall-Ping");
 if (args.Length < 2)
 {
-    Line(@"Provide refresh (s) and computer names separated with space as parameters e.g. pingr 10 www.google.com www.facebook.com");
+    Line(@"Provide refresh (s) and computer names separated with space as parameters e.g. Intervall-Ping 10 www.google.com www.facebook.com");
     Line("Press any key or close window...");
     Console.ReadKey();
     return;
