@@ -1,22 +1,23 @@
 ﻿/* Ping computers every minute 
  * @jussivirkkala
+ * 2024-05-15 Corrected reporting only changes
  * 2024-05-06 Periodic timer
  * 2023-08-16 v1.0.0 First version. Using BesaEvt 1.0.3 as template. 
  * 2023-08-16 v1.0.1 Press any key to close scan
  * 2023-08-16 v1.0.2 Intervall as parameter. Corrected memory leak.
- * dotnet publish -r win-x64 -c Release --self-contained true -p:PublishSingleFile=true -p:IncludeAllContentForSelfExtract=true
+ *
+ * dotnet publish -p:IncludeAllContentForSelfExtract=true
  */
 
 using System.Net.NetworkInformation;
 using System.Diagnostics; // FileVersionInfo
 using System.Reflection; // Assembly.
 
-bool[] on;
-bool init=true;
-on = new bool[255];
+
+
 Ping pingSender = new Ping();
 
-Line("Ping computers every x seconds v" +
+Line("Ping computers every x seconds. Report change v" +
     FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion +
     "\ngithub.com/jussivirkkala/pingr");
 if (args.Length < 2)
@@ -52,38 +53,40 @@ PingOptions options = new PingOptions
 var timer = new PeriodicTimer (TimeSpan.FromSeconds (t));
 RepeatForEver();
 
-Line("Press any key to close scan...");
+Line("Waiting for change. Press any key to close scan...");
 Console.ReadKey();
 Line(DateTime.Now.ToString("o") + "\tAny key close");
 timer.Dispose();
 
 async void RepeatForEver()
 {
-   while (await timer.WaitForNextTickAsync())
+    bool[] on;
+    bool init=true;
+    on = new bool[255];
 
-
-    for (int i = 1; i < args.Length; i++)
+    while (await timer.WaitForNextTickAsync())
     {
-        string s;
-        s = DateTime.Now.ToString("O")+"\t";
-        string t = args[i];
-        s += t + "\t";       
-
-        bool b = Ping(pingSender,options,t);
-        if (init) on[i] = !b;
-        if (b != on[i])
+        for (int i = 1; i < args.Length; i++)
         {
-            if (b)
-                s += "on";
-            else
-                s += "off";
-            on[i] = b;
-            Line(s);
+            string s;
+            s = DateTime.Now.ToString("O")+"\t";
+            string t = args[i];
+            s += t + "\t";       
+
+            bool b = Ping(pingSender,options,t);
+            if (init) on[i] = !b;
+            if (b != on[i])
+            {
+                if (b)
+                    s += "on";
+                else
+                    s += "off";
+                on[i] = b;
+                Line(s);
+            }
         }
-    }
-    init = false;
-
-
+        init = false;
+     }  
 }
 
 static bool Ping(Ping pingSender, PingOptions options,string computer)
@@ -95,16 +98,17 @@ static bool Ping(Ping pingSender, PingOptions options,string computer)
             PingReply reply = pingSender.Send(computer, 500, new byte[32], options);
             if (reply.Status == IPStatus.Success)
             {
-                return true; //  Console.WriteLine($"Ping to {hostNameOrAddress} succeeded. Roundtrip time: {reply.RoundtripTime} ms");
+            
+                return true; 
             }
             else
             {
-                return false; // Console.WriteLine($"Ping to {hostNameOrAddress} failed. Status: {reply.Status}");
+                return false; 
             }
         }
         catch (PingException ex)
         {
-            return false; // Console.WriteLine($"An error occurred: {ex.Message}");
+            return false; 
         }
 }
 

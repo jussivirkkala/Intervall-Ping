@@ -4,9 +4,9 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Authors>@jussivirkkala</Authors>
-		<FileVersion>2024.05.07</FileVersion>
+		<FileVersion>2024.05.14</FileVersion>
 		<Copyright>@jussivirkkala</Copyright>
-		<Version>2024.05.07</Version>
+		<Version>2024.05.14</Version>
 		<Nullable>enable</Nullable>
 		<PublishTrimmed>true</PublishTrimmed>
 	    <PublishSingleFile>true</PublishSingleFile>
